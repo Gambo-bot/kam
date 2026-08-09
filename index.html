@@ -1,158 +1,1648 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<marquee>
-    
-<h1> <font size = "4">  <b> BIBIANI-ANHWIASO-BEKWAI NPP REGISTER </b> </h1>
-     <!-- contents -->
-</marquee>
-
-
 <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KAM SITE</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HON KINGSLEY ADJEI MANU STRONGROOM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <style>
-    body { margin: 0; background:#e6f7ff; font-family: Arial; }
+  :root{
+    --bg:#0a0f1c;
+    --bg-2:#0d1526;
+    --panel:#111a2e;
+    --panel-2:#16213a;
+    --line: rgba(242,240,233,0.09);
+    --text:#f2f0e9;
+    --muted:#8a93a6;
+    --gold:#e8b23c;
+    --gold-dim: rgba(232,178,60,0.15);
+    --red:#c1443c;
+    --green:#3c8c6e;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(1100px 600px at 15% -10%, rgba(59,111,160,0.16), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(232,178,60,0.08), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+    padding-bottom:60px;
+  }
+  ::selection{background:var(--gold); color:#111;}
 
-    nav {
-        background:#0077b6;
-        padding:25px;
-        text-align:center;
-    }
+  .ticker{
+    background: linear-gradient(90deg, #000 0%, #0e1526 100%);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:7px 0;
+  }
+  .ticker span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    color:var(--gold);
+    padding:0 2.5rem;
+    display:inline-block;
+    animation: scrollTicker 26s linear infinite;
+  }
+  @keyframes scrollTicker{
+    0%{ transform: translateX(0%);}
+    100%{ transform: translateX(-50%);}
+  }
 
-    nav button {
-        background:white;
-        border:none;
-        padding:10px 20px;
-        margin:5px;
-        border-radius:5px;
-        cursor:pointer;
-        font-size:20px;
-        font-weight:bold;
-    }
+  header.hero{
+    max-width:1220px;
+    margin:0 auto;
+    padding:44px 24px 28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-left .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--gold);
+    font-size:12px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    margin:0 0 10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .live-dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--red);
+    box-shadow:0 0 0 0 rgba(193,68,60,0.6);
+    animation: pulse 1.6s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(193,68,60,0.55);}
+    70%{ box-shadow:0 0 0 9px rgba(193,68,60,0);}
+    100%{ box-shadow:0 0 0 0 rgba(193,68,60,0);}
+  }
+  input#electionTitle{
+    background:transparent;
+    border:none;
+    outline:none;
+    color:var(--text);
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    font-size:clamp(26px, 4vw, 44px);
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    width: min(560px, 62vw);
+    border-bottom:2px dashed transparent;
+  }
+  input#electionTitle:hover, input#electionTitle:focus{
+    border-bottom:2px dashed var(--line);
+  }
+  .hero-sub{ color:var(--muted); font-size:14px; margin-top:6px; }
+  .hero-right{ display:flex; gap:28px; }
+  .stat-block{ text-align:right; font-family:'IBM Plex Mono', monospace; }
+  .stat-block .big-num{
+    font-size:38px; font-weight:600; color:var(--gold); line-height:1;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-block.muted .big-num{ color:var(--text); }
+  .stat-block .big-num-label{
+    color:var(--muted); font-size:10.5px; letter-spacing:0.16em;
+    text-transform:uppercase; margin-top:4px;
+  }
 
-    .section {
-        display:none;
-        padding:25px;
-        text-align:center;
-    }
+  main{
+    max-width:1220px;
+    margin:0 auto;
+    padding:32px 24px 0;
+    display:grid;
+    grid-template-columns: 380px 1fr;
+    gap:24px;
+  }
+  @media (max-width: 900px){ main{grid-template-columns: 1fr;} }
 
-    .gallery {
-        display:grid;
-        grid-template-columns:repeat(3, 1fr);
-        gap:15px;
-        margin-top:20px;
-    }
+  .left-col{ display:flex; flex-direction:column; gap:24px; }
 
-    .gallery img, .info-img, .habitat-img, .food-img {
-        width:100%;
-        border-radius:10px;
-    }
+  section.panel{
+    background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .panel-title{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-size:14px;
+    color:var(--gold);
+    margin:0 0 4px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .panel-title .num-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    border:1px solid var(--line);
+    padding:1px 7px;
+    border-radius:20px;
+  }
+  .panel-desc{ color:var(--muted); font-size:12.5px; margin:0 0 18px; }
 
-    ul {
-        list-style:none;
-        padding:0;
-        font-size:20px;
-    }
+  .avatar-upload{
+    width:84px; height:84px;
+    border-radius:50%;
+    border:2px dashed rgba(242,240,233,0.25);
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 16px;
+    cursor:pointer;
+    background-size:cover; background-position:center;
+    position:relative;
+    transition: border-color .2s ease, transform .15s ease;
+    flex-shrink:0;
+  }
+  .avatar-upload:hover{ border-color:var(--gold); transform:scale(1.03); }
+  .avatar-upload span{ font-size:10px; color:var(--muted); text-align:center; line-height:1.3; padding:0 8px; }
+  .avatar-upload.has-img span{ display:none; }
+  .avatar-upload input[type=file]{ display:none; }
 
-    ul li {
-        margin:8px 0;
-    }
+  .field{ margin-bottom:14px; }
+  .field label{
+    display:block; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:6px;
+  }
+  .field input[type=text], .field select{
+    width:100%;
+    background:rgba(0,0,0,0.25);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 12px;
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    outline:none;
+    transition: border-color .15s ease;
+  }
+  .field textarea{
+    width:100%;
+    background:rgba(0,0,0,0.25);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 12px;
+    color:var(--text);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    line-height:1.6;
+    outline:none;
+    resize:vertical;
+    transition: border-color .15s ease;
+  }
+  .field textarea:focus{ border-color:var(--gold); }
+  .field select{ cursor:pointer; }
+  .field select option{ background:#16213a; color:var(--text); }
+  .field input[type=text]:focus, .field select:focus{ border-color:var(--gold); }
+  .field-row{ display:flex; gap:10px; }
+  .field-row .field{ flex:1; }
 
-    .row {
-        display:flex;
-        gap:20px;
-        justify-content:center;
-        flex-wrap:wrap;
-    }
+  .swatches{ display:flex; gap:8px; flex-wrap:wrap; }
+  .swatch{
+    width:22px; height:22px; border-radius:50%; cursor:pointer;
+    border:2px solid transparent; transition: transform .12s ease;
+  }
+  .swatch:hover{ transform:scale(1.15); }
+  .swatch.selected{ border-color:#fff; }
 
-    .row div {
-        width:300px;
-    }
+  .btn{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    font-size:14px;
+    font-weight:600;
+    border:none;
+    border-radius:8px;
+    padding:12px 18px;
+    cursor:pointer;
+    transition: filter .15s ease, transform .1s ease;
+    width:100%;
+  }
+  .btn:active{ transform:scale(0.98); }
+  .btn-primary{ background:var(--gold); color:#1a1408; }
+  .btn-primary:hover{ filter:brightness(1.08); }
+  .btn-ghost{
+    background:transparent; border:1px solid var(--line); color:var(--muted); margin-top:10px;
+  }
+  .btn-ghost:hover{ color:var(--text); border-color:var(--muted); }
+  .btn-small{
+    width:auto; padding:8px 12px; font-size:12px;
+  }
 
+  .divider-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--muted);
+    margin:20px 0 12px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+
+  /* ---- station list ---- */
+  .station-group{ margin-bottom:14px; }
+  .station-group-title{
+    font-family:'Oswald', sans-serif;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--text);
+    opacity:0.85;
+    margin:0 0 8px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .station-group-title::before{
+    content:'';
+    width:6px; height:6px;
+    background:var(--gold);
+    border-radius:50%;
+    flex-shrink:0;
+  }
+  .station-card{
+    background:rgba(0,0,0,0.22);
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin-bottom:8px;
+    overflow:hidden;
+  }
+  .station-card-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 12px;
+    cursor:pointer;
+  }
+  .station-card-head:hover{ background:rgba(255,255,255,0.03); }
+  .station-name{ font-size:13px; font-weight:500; }
+  .station-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; color:var(--muted);
+    display:flex; align-items:center; gap:10px;
+  }
+  .chevron{ transition: transform .2s ease; font-size:11px; color:var(--muted); }
+  .station-card.open .chevron{ transform:rotate(90deg); }
+  .station-body{
+    display:none;
+    padding:4px 12px 12px;
+    border-top:1px solid var(--line);
+  }
+  .station-card.open .station-body{ display:block; }
+  .station-vote-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:7px 0;
+    gap:8px;
+  }
+  .station-vote-row .cname{
+    font-size:12.5px;
+    display:flex; align-items:center; gap:7px;
+    min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .mini-controls{ display:flex; align-items:center; gap:5px; flex-shrink:0; }
+  .mini-controls button{
+    width:22px; height:22px; border-radius:5px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.03);
+    color:var(--text); font-size:13px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; line-height:1;
+  }
+  .mini-controls button:hover{ background:rgba(255,255,255,0.1); }
+  .mini-controls input{
+    width:48px; text-align:center;
+    background:rgba(0,0,0,0.3);
+    border:1px solid var(--line);
+    border-radius:5px; color:var(--text);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; padding:4px 2px; outline:none;
+  }
+  .station-remove{
+    background:none; border:none; color:var(--muted); cursor:pointer;
+    font-size:13px; padding:2px 4px;
+  }
+  .station-remove:hover{ color:var(--red); }
+  .empty-mini{ color:var(--muted); font-size:12px; padding:8px 0; }
+
+  /* ---------- Results board ---------- */
+  .board-header{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:18px; flex-wrap:wrap; gap:10px;
+  }
+  .view-toggle{
+    display:flex; background:rgba(0,0,0,0.3); border:1px solid var(--line);
+    border-radius:8px; padding:3px; flex-wrap:wrap;
+  }
+  .view-toggle button{
+    background:transparent; border:none; color:var(--muted);
+    font-family:'IBM Plex Mono', monospace; font-size:11px;
+    letter-spacing:0.05em; text-transform:uppercase;
+    padding:7px 13px; border-radius:6px; cursor:pointer; transition: all .15s ease;
+  }
+  .view-toggle button.active{ background:var(--gold); color:#1a1408; }
+
+  .empty-state{ text-align:center; padding:60px 20px; color:var(--muted); }
+  .empty-state .icon{ font-size:38px; margin-bottom:10px; opacity:0.5; }
+  .empty-state p{ font-size:13.5px; max-width:340px; margin:6px auto 0; }
+
+  .race-row{
+    display:flex; align-items:center; gap:14px; padding:14px 0;
+    border-bottom:1px solid var(--line); position:relative;
+  }
+  .race-row:last-child{ border-bottom:none; }
+  .race-avatar{
+    width:46px; height:46px; border-radius:50%;
+    background-size:cover; background-position:center;
+    background-color:rgba(255,255,255,0.06);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:16px;
+    flex-shrink:0; border:2px solid var(--line);
+  }
+  .race-main{ flex:1; min-width:0; }
+  .race-top{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; gap:8px; }
+  .race-name{
+    font-family:'Oswald', sans-serif; font-size:16px; font-weight:600; letter-spacing:0.01em;
+    display:flex; align-items:center; gap:8px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .badge{
+    font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:0.06em;
+    text-transform:uppercase; background:var(--gold-dim); color:var(--gold);
+    padding:2px 7px; border-radius:20px; border:1px solid rgba(232,178,60,0.4);
+  }
+  .badge.winner{ background: rgba(60,140,110,0.18); color:var(--green); border-color: rgba(60,140,110,0.5); }
+  .race-stats{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--muted);
+    flex-shrink:0; text-align:right;
+  }
+  .race-stats b{ color:var(--text); font-size:15px; font-variant-numeric: tabular-nums; }
+  .race-bar-track{ height:10px; background:rgba(255,255,255,0.06); border-radius:6px; overflow:hidden; }
+  .race-bar-fill{ height:100%; border-radius:6px; transition: width .5s cubic-bezier(.2,.8,.3,1); }
+
+  .vote-controls{ display:flex; align-items:center; gap:6px; flex-shrink:0; }
+  .vote-controls button{
+    width:28px; height:28px; border-radius:6px; border:1px solid var(--line);
+    background:rgba(255,255,255,0.03); color:var(--text); font-size:16px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; line-height:1;
+    transition: background .15s ease;
+  }
+  .vote-controls button:hover{ background:rgba(255,255,255,0.1); }
+  .vote-controls input{
+    width:64px; text-align:center; background:rgba(0,0,0,0.3);
+    border:1px solid var(--line); border-radius:6px; color:var(--text);
+    font-family:'IBM Plex Mono', monospace; font-size:13px; padding:6px 4px; outline:none;
+  }
+  .remove-btn{
+    background:none; border:none; color:var(--muted); cursor:pointer; font-size:16px;
+    padding:4px 6px; transition: color .15s ease; flex-shrink:0;
+  }
+  .remove-btn:hover{ color:var(--red); }
+
+  /* ---------- Area breakdown table ---------- */
+  .sort-bar{
+    display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;
+  }
+  .sort-bar button{
+    background:rgba(0,0,0,0.25);
+    border:1px solid var(--line);
+    color:var(--muted);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:7px 12px;
+    border-radius:7px;
+    cursor:pointer;
+    display:flex; align-items:center; gap:5px;
+  }
+  .sort-bar button.active{ color:var(--gold); border-color:rgba(232,178,60,0.4); }
+  .area-card{
+    background:rgba(0,0,0,0.18);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:12px;
+  }
+  .area-card-top{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:12px;
+  }
+  .area-name{
+    font-family:'Oswald', sans-serif; font-size:16px; font-weight:600; text-transform:uppercase;
+    letter-spacing:0.02em;
+  }
+  .area-sub{ color:var(--muted); font-size:11.5px; font-family:'IBM Plex Mono', monospace; margin-top:3px; }
+  .area-total{ text-align:right; font-family:'IBM Plex Mono', monospace; }
+  .area-total b{ font-size:19px; color:var(--gold); }
+  .area-total .lbl{ font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; }
+  .area-leader{
+    display:flex; align-items:center; gap:8px;
+    font-size:12.5px;
+    background:rgba(255,255,255,0.03);
+    border-radius:8px;
+    padding:8px 10px;
+    margin-bottom:10px;
+  }
+  .area-leader .dot{ width:9px; height:9px; }
+  .mini-bar-track{ height:6px; background:rgba(255,255,255,0.06); border-radius:4px; overflow:hidden; margin-top:8px; }
+  .mini-bar-fill{ height:100%; border-radius:4px; }
+  .mini-bar-row{ margin-bottom:8px; }
+  .mini-bar-top{ display:flex; justify-content:space-between; font-size:11.5px; color:var(--muted); margin-bottom:3px; }
+  .mini-bar-top b{ color:var(--text); font-weight:500; }
+
+  /* ---------- Chart section ---------- */
+  .chart-canvas-box{ position:relative; height:340px; }
+
+  footer{
+    max-width:1220px; margin:36px auto 0; padding:0 24px;
+    color:var(--muted); font-size:11.5px; text-align:center;
+    font-family:'IBM Plex Mono', monospace; letter-spacing:0.04em;
+  }
+
+  /* ---------- Chat assistant ---------- */
+  #chatFab{
+    position:fixed;
+    bottom:24px; right:24px;
+    width:58px; height:58px;
+    border-radius:50%;
+    background: linear-gradient(160deg, var(--gold), #c98f22);
+    border:none;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 0 rgba(232,178,60,0.5);
+    z-index:999;
+    animation: fabPulse 2.4s infinite;
+    transition: transform .15s ease;
+  }
+  #chatFab:hover{ transform:scale(1.06); }
+  #chatFab svg{ width:26px; height:26px; }
+  @keyframes fabPulse{
+    0%{ box-shadow:0 8px 24px rgba(0,0,0,0.4), 0 0 0 0 rgba(232,178,60,0.45); }
+    70%{ box-shadow:0 8px 24px rgba(0,0,0,0.4), 0 0 0 14px rgba(232,178,60,0); }
+    100%{ box-shadow:0 8px 24px rgba(0,0,0,0.4), 0 0 0 0 rgba(232,178,60,0); }
+  }
+  #chatFab .fab-dot{
+    position:absolute; top:-1px; right:-1px;
+    width:14px; height:14px; border-radius:50%;
+    background:var(--red);
+    border:2px solid var(--bg);
+    display:none;
+  }
+  #chatFab.has-unread .fab-dot{ display:block; }
+
+  #chatPanel{
+    position:fixed;
+    bottom:96px; right:24px;
+    width:360px;
+    max-width:calc(100vw - 32px);
+    height:520px;
+    max-height:calc(100vh - 140px);
+    background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    z-index:1000;
+  }
+  #chatPanel.open{ display:flex; }
+
+  .chat-header{
+    padding:16px 18px;
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; gap:10px;
+    background:rgba(0,0,0,0.2);
+    flex-shrink:0;
+  }
+  .chat-header .avatar-ring{
+    width:34px; height:34px; border-radius:50%;
+    background: var(--gold-dim);
+    border:1px solid rgba(232,178,60,0.4);
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px;
+    flex-shrink:0;
+  }
+  .chat-header .htitle{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    font-size:13px;
+    color:var(--text);
+  }
+  .chat-header .hsub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    color:var(--muted);
+    display:flex; align-items:center; gap:5px;
+    margin-top:2px;
+  }
+  .chat-header .hsub .live-dot-sm{
+    width:6px; height:6px; border-radius:50%; background:var(--green);
+  }
+  .chat-close{
+    margin-left:auto;
+    background:none; border:none; color:var(--muted);
+    cursor:pointer; font-size:16px; padding:4px;
+  }
+  .chat-close:hover{ color:var(--text); }
+
+  .chat-body{
+    flex:1;
+    overflow-y:auto;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .chat-msg{
+    max-width:86%;
+    font-size:13px;
+    line-height:1.5;
+    padding:10px 13px;
+    border-radius:12px;
+    white-space:pre-wrap;
+  }
+  .chat-msg.bot{
+    align-self:flex-start;
+    background:rgba(255,255,255,0.05);
+    border:1px solid var(--line);
+    border-bottom-left-radius:3px;
+  }
+  .chat-msg.user{
+    align-self:flex-end;
+    background: var(--gold-dim);
+    border:1px solid rgba(232,178,60,0.35);
+    color:var(--text);
+    border-bottom-right-radius:3px;
+  }
+  .chat-msg.typing{
+    display:flex; align-items:center; gap:4px;
+    padding:12px 14px;
+  }
+  .chat-msg.typing span{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--muted);
+    animation: typingBounce 1.1s infinite ease-in-out;
+  }
+  .chat-msg.typing span:nth-child(2){ animation-delay:.15s; }
+  .chat-msg.typing span:nth-child(3){ animation-delay:.3s; }
+  @keyframes typingBounce{
+    0%,60%,100%{ transform:translateY(0); opacity:.5; }
+    30%{ transform:translateY(-4px); opacity:1; }
+  }
+
+  .chat-suggestions{
+    display:flex; flex-wrap:wrap; gap:6px;
+    padding:0 16px 12px;
+    flex-shrink:0;
+  }
+  .chat-suggestions button{
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--line);
+    color:var(--muted);
+    font-family:'Inter', sans-serif;
+    font-size:11px;
+    padding:6px 10px;
+    border-radius:20px;
+    cursor:pointer;
+    transition: all .15s ease;
+  }
+  .chat-suggestions button:hover{ color:var(--gold); border-color:rgba(232,178,60,0.4); }
+
+  .chat-input-row{
+    display:flex; gap:8px;
+    padding:12px;
+    border-top:1px solid var(--line);
+    background:rgba(0,0,0,0.2);
+    flex-shrink:0;
+  }
+  .chat-input-row input{
+    flex:1;
+    background:rgba(0,0,0,0.3);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:10px 15px;
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    font-size:13px;
+    outline:none;
+  }
+  .chat-input-row input:focus{ border-color:var(--gold); }
+  .chat-input-row button{
+    width:38px; height:38px;
+    border-radius:50%;
+    border:none;
+    background:var(--gold);
+    color:#1a1408;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    transition: filter .15s ease;
+  }
+  .chat-input-row button:hover{ filter:brightness(1.08); }
+  .chat-input-row button:disabled{ opacity:0.5; cursor:default; }
 </style>
 </head>
 <body>
 
-<nav>
-     <button onclick="show('gallery')"><a href="index.html">Home</a></button>
-    <button onclick="show('gallery')"><a href="Schhppp.html">Bibiani Zone</a></button>
-    <button onclick="show('Appl')"><a href="new 12.html"> Anhwiaso Zone</a></button>
-	 <button onclick="show('Appl')"><a href="https://docs.google.com/spreadsheets/d/1e1CSVNM-UTvmEmBL7qkMyJTN-0yk_WXfRaLdFhjmHDQ/edit?usp=sharing">All Register</a> </button>
-</nav>
-</nav>
+<div class="ticker">
+  <span>★ ADD CANDIDATES, POLLING STATIONS, AND ELECTORAL AREAS — VOTES ROLL UP AUTOMATICALLY &nbsp; • &nbsp; SORT RESULTS BY AREA, TOTAL VOTES, OR NAME &nbsp; • &nbsp; SWITCH TO CHART VIEW FOR A BAR OR DONUT BREAKDOWN &nbsp; • &nbsp; ADD CANDIDATES, POLLING STATIONS, AND ELECTORAL AREAS — VOTES ROLL UP AUTOMATICALLY &nbsp; • &nbsp; SORT RESULTS BY AREA, TOTAL VOTES, OR NAME &nbsp; • &nbsp;</span>
+</div>
 
-<!-- HOME -->
-<div id="home" class="section">
-    <h1>BIBIANI ANHWIASO BEKWAI REGISTER</h1>
-	<br> </br>
+<header class="hero">
+  <div class="hero-left">
+    <p class="eyebrow"><span class="live-dot"></span>HON KINGSLEY ADJEI MANU STRONGROOM</p>
+    <h1 style="margin:0;">
+      <input id="electionTitle" type="text" value="KAM 2028 ELECTION" maxlength="600">
+    </h1>
+    <p class="hero-sub">WITH COLLECTIVE EFFORT, KAM SHALL EMERGE VICTORIOUS.</p>
+  </div>
+  <div class="hero-right">
+    <div class="stat-block muted">
+      <div class="big-num" id="areaCount">0</div>
+      <div class="big-num-label">Areas Reporting</div>
+    </div>
+    <div class="stat-block">
+      <div class="big-num" id="totalVotes">0</div>
+      <div class="big-num-label">Total Votes Counted</div>
+    </div>
+  </div>
+</header>
 
-	<h2> <p> <font size = "20">  All  Zones </p>
-	
-	Names And Phone Numbers<h2/> <br> </br>
-	
-	 <h3> <font size = "5">
-Kwasi Addea Hujibre Prim A Chairman	<br> </br>
-Kwaku Akommanin Humjibre Secrtary	2.33E+11 <br> </br>
-Kwaku Akommanin Humjibre Secrtary	0243752988 <br> </br>
-Bernard Bennie Hunjibre Youth Organizer	0599556114 <br> </br>
-Akosua Boatemaa Humjibre Womens Organizer	0554423940 <br> </br>
-Tano Abednego Humjibre Communication Off.	0559675367 <br> </br>
-Nicholas Gyapong Humjibre Elections Off.	0534030431 <br> </br>
-Kwame Agyei Humjibre 1B Chairman	0242722287 <br> </br>
-Kwaku Mintah Humjibre 1B Secretary	0242712144 <br> </br>
-Seth Kwadwo Obeng Humjibre 1B organizer	0546738824 <br> </br>
-Martha Cudjoe Humjibre 1B Youth Organizer	0558076398 <br> </br>
-Evans Arthur Sagoe Humjibre 1B Elections Off.	0247433655<br> </br>
-John Opoku Hujibre Anglican Prim 2 Chairman	0595502383 <br> </br>
-Yaw Twumasi Hujibre Anglican Prim 2 Secretary	0541073586<br> </br>
-Yaw Agyei Hujibre Anglican Prim 2 Organizer	0540977826<br> </br>
-Akwasi Biri Hujibre Anglican Prim 2 Comm. Officer	0546020678<br> </br>
-Padmore Owusu Ansah Hujibre Anglican Prim 2 Elections Aff.	0540322499<br> </br>
-James Kofi Danso Hujibre Anglican Prim 2 Youth Organizer	0553193982<br> </br>
-Ether Addea Hujibre Anglican Prim 2 Womens Org.	<br> </br>
-Isaac Hujibre Anglican Prim 2 Comm. Officer	0542394859 <br> </br>
-Seth Kofi Gyabeng Hujibre Anglican Prim 2 Electoral Aff.	0549688801 <br> </br>
-Kwasi Addea Kojina Cat. Church Chairman	533434041 <br> </br>
-Michael Baidoo Kojina Cat. Church Secretary	0257831392<br> </br>
-Joseph Nkrumah Kojina Cat. Church Organizer	0552663046<br> </br>
-Kwame Dennis Kojina Cat. Church Youth Organizer	00534413310<br> </br>
-Dora Acquah Bediako Kojina Cat. Church Women's Org.	0534413310<br> </br>
-Mensah Emmanuel Kojina Cat. Church Comm. Officer	0256968581<br> </br>
-Prince Baidoo Kojina Cat. Church Electoral Affairs	0549946611<br> </br>
-Maxwell Gyapong Muoho B (Chairman)	243666377<br> </br>
-Stephen Gyapong Muoho B Degraft Secretary	242768514 <br> </br>
-Aduhene Joseph Muoho B (Organizer)	555384245 <br> </br>
-Emmanuel Fordjour Muoho B (Youth Organizer)	0596016935<br> </br>
-Abigail Tawiah Muoho B (Women's Organizer)	0559003420 <br> </br>
-Linda Antwi Muoho A (Women's Organizer)	0240977574 <br> </br>
-Robert Baidoo Muoho A (Comm. Officer) Number not clear	248071088 <br> </br>
-Samuel Armah Muoho A (Electoral Affairs)	0542993903 <br> </br>
-Fordjour Muoho M/A Prim. 2 (Chairman) Benson	245142950 <br> </br>
-Kyei Derrick Muoho M/A Prim. 2 (Secretary)	0243830899<br> </br>
-Kwadwo Nkrumah Muoho M/A Prim. 2 (Organizer) No Number	<br> </br>
-Enock Appiah Muoho M/A Prim. 2 (Youth. O)	0553588212 <br> </br>
-Millicent Pomaa Muoho M/A Prim. 2 (Women Organizer)	0241170430 <br> </br>
-Acheampong Mensah Muoho M/A Prim. 2 (Comm. Officer)	0244068137 <br> </br>
-Opoku Richmond Muoho M/A Prim. 2 (Elections Officer)	0243813411 <br> </br>
- </h3>
+<main>
+  <!-- LEFT: Add candidate + polling stations -->
+  <div class="left-col">
+    <section class="panel">
+      <p class="panel-title">Add a Candidate <span class="num-tag" id="candidateCount">0</span></p>
+      <p class="panel-desc">Enter a name, pick a color, and optionally upload a photo.</p>
 
-<div>
+      <label class="avatar-upload" id="avatarUpload">
+        <span>Click to<br>upload photo</span>
+        <input type="file" id="photoInput" accept="image/*">
+      </label>
 
+      <div class="field">
+        <label for="nameInput">Candidate name</label>
+        <input type="text" id="nameInput" placeholder="e.g. GAMBO" maxlength="30">
+      </div>
+      <div class="field">
+        <label for="partyInput">Party / label <span style="opacity:.6">(optional)</span></label>
+        <input type="text" id="partyInput" placeholder="e.g. NPP/NDC/GUM/PPP" maxlength="24">
+      </div>
+      <div class="field">
+        <label>Color</label>
+        <div class="swatches" id="swatches"></div>
+      </div>
+
+      <button class="btn btn-primary" id="addBtn">+ Add Candidate</button>
+      <button class="btn btn-ghost" id="resetBtn">Reset all votes</button>
+    </section>
+
+    <section class="panel">
+      <p class="panel-title">Polling Stations <span class="num-tag" id="stationCount">0</span></p>
+      <p class="panel-desc">Group stations under an electoral area — add one at a time, paste a whole list, or generate a numbered batch.</p>
+
+      <div class="field">
+        <label for="areaSelect">Electoral area</label>
+        <select id="areaSelect">
+          <option value="__new__">+ New electoral area…</option>
+        </select>
+      </div>
+      <div class="field" id="newAreaField">
+        <label for="newAreaInput">New area name</label>
+        <input type="text" id="newAreaInput" placeholder="e.g. Kwaso Cocoa Shed" maxlength="34">
+      </div>
+
+      <div class="view-toggle" id="stationModeToggle" style="margin-bottom:16px;">
+        <button data-mode="single" class="active">One at a time</button>
+        <button data-mode="bulk">Add several</button>
+      </div>
+
+      <div id="singleStationMode">
+        <div class="field">
+          <label for="stationInput">Polling station name</label>
+          <input type="text" id="stationInput" placeholder="e.g. Kwamekrom DA Prim." maxlength="600">
+        </div>
+        <button class="btn btn-primary" id="addStationBtn">+ Add Polling Station</button>
+      </div>
+
+      <div id="bulkStationMode" style="display:none;">
+        <div class="field">
+          <label for="bulkStationInput">One station name per line</label>
+          <textarea id="bulkStationInput" rows="4" placeholder="Kwamekrom Prim. A   — Kwamekrom DA Prim. B — Town Library"></textarea>
+        </div>
+        <button class="btn btn-primary" id="addBulkStationBtn">+ Add All Stations</button>
+
+        <div class="divider-label" style="margin-top:18px;">Or quickly generate a numbered batch</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="quickCount">How many?</label>
+            <input type="text" id="quickCount" placeholder="e.g. 25" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="quickPrefix">Name prefix</label>
+            <input type="text" id="quickPrefix" placeholder="Station" maxlength="90">
+          </div>
+        </div>
+        <button class="btn btn-ghost" id="quickGenerateBtn" style="margin-top:0;">Generate Numbered Stations</button>
+
+        <p id="bulkStatus" style="display:none; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--green); margin:10px 0 0;"></p>
+      </div>
+
+      <div class="divider-label">Stations entered so far</div>
+      <div id="stationList">
+        <p class="empty-mini">No polling stations yet.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- RIGHT: Results + chart -->
+  <section class="panel">
+    <div class="board-header">
+      <p class="panel-title" style="margin:0;">Live Results</p>
+      <div class="view-toggle">
+        <button data-view="board" class="active" id="tabBoard">Overall</button>
+        <button data-view="areas" id="tabAreas">Results On Electoral Area Base</button>
+        <button data-view="bar" id="tabBar">Bar Chart</button>
+        <button data-view="donut" id="tabDonut">Donut Chart</button>
+      </div>
+    </div>
+
+    <div id="boardView">
+      <div class="empty-state" id="emptyState">
+        <div class="icon">🗳️</div>
+        <p>No candidates yet. Add your first candidate on the left to start the count.</p>
+      </div>
+      <div id="raceList"></div>
+    </div>
+
+    <div id="areasView" style="display:none;">
+      <div class="sort-bar">
+        <button data-sort="votes-desc" class="active">Votes ↓</button>
+        <button data-sort="votes-asc">Votes ↑</button>
+        <button data-sort="name-asc">Name A–Z</button>
+        <button data-sort="stations-desc">Most Stations</button>
+      </div>
+      <div id="areaEmptyState" class="empty-state" style="display:none;">
+        <div class="icon">🏛️</div>
+        <p>No electoral areas yet. Add a polling station on the left to create one.</p>
+      </div>
+      <div id="areaList"></div>
+    </div>
+
+    <div id="chartView" style="display:none;">
+      <div class="chart-canvas-box">
+        <canvas id="resultsChart"></canvas>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>KINGSLEY ADJEI MANU RESULTS CALCULATOR - DEV BY GAMBO TECH +233550859391</footer>
+
+<!-- ---------- Chat assistant ---------- -->
+<button id="chatFab" aria-label="Open help assistant">
+  <span class="fab-dot"></span>
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 3C6.98 3 3 6.58 3 11c0 2.4 1.19 4.55 3.08 6.02-.1.98-.5 2.3-1.48 3.68 1.7-.15 3.32-.82 4.5-1.63A11.6 11.6 0 0 0 12 19c5.02 0 9-3.58 9-8s-3.98-8-9-8Z" fill="#1a1408"/>
+  </svg>
+</button>
+
+<div id="chatPanel">
+  <div class="chat-header">
+    <div class="avatar-ring">🗳️</div>
+    <div>
+      <div class="htitle">Results Desk Assistant</div>
+      <div class="hsub"><span class="live-dot-sm"></span> Ask how the system works</div>
+    </div>
+    <button class="chat-close" id="chatCloseBtn" aria-label="Close chat">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-suggestions" id="chatSuggestions">
+    <button data-q="How do I add a candidate?">Add a candidate</button>
+    <button data-q="How do polling stations and electoral areas work?">Polling stations</button>
+    <button data-q="What's the difference between the Overall and By Area tabs?">Overall vs By Area</button>
+    <button data-q="How do I read the chart view?">Chart view</button>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Ask a question…" maxlength="900">
+    <button id="chatSendBtn" aria-label="Send">➤</button>
+  </div>
+</div>
 
 <script>
-function show(page){
-    document.querySelectorAll('.section').forEach(sec => sec.style.display='none');
-    document.getElementById(page).style.display='block';
-}
-show('home');
+(function(){
+  const STATIC_INSTRUCTIONS = `You are the in-app help assistant embedded inside "Election Night — Results Desk," a single-page election tally tool. You ONLY answer questions about how to use this tool or about the live data described in "CURRENT LIVE STATE" below. Be warm, concise (2-5 sentences, or a short numbered list for steps), and practical. Never invent features, buttons, or data that are not described below — if you don't know something, say so plainly instead of guessing.
+
+ACCURACY RULES:
+- Everything under "HOW THE TOOL WORKS" is a complete and exact description of the app's features — do not add capabilities beyond it.
+- Everything under "CURRENT LIVE STATE" is a live, accurate snapshot of what is on the page right now (refreshed on every message you receive) — use it, not memory, when answering questions about candidates, votes, areas, or stations.
+- If someone asks about data that isn't in the live state (e.g. a candidate that doesn't exist), say it isn't in the app right now rather than inventing an answer.
+- Numbers you cite (vote counts, percentages, counts of areas/stations) must come directly from the live state — do not do your own arithmetic beyond simple sums already given to you.
+
+HOW THE TOOL WORKS:
+
+1. CANDIDATES (left panel, top card "Add a Candidate"):
+   - Type a name, optionally a party/label, pick a color swatch, and optionally click the circle to upload a photo.
+   - Click "+ Add Candidate" to add them to the race. They appear immediately in the results board.
+   - Each candidate can be removed later with the ✕ button on their row in the Overall results, which also clears their votes from every polling station.
+
+2. POLLING STATIONS & ELECTORAL AREAS (left panel, second card "Polling Stations"):
+   - Votes are entered per polling station, not directly on the candidate. This mirrors how real elections report results station by station.
+   - First choose or create an "Electoral area" (e.g. a constituency, ward, or district) from the dropdown — pick "+ New electoral area…" to type a new one. Every station added below goes into whichever area is currently selected.
+   - There are two ways to add stations to that area, switched with the "One at a time" / "Add several" toggle:
+     a) "One at a time": type a single station name (e.g. "Station 04 — St. Mary's School") and click "+ Add Polling Station".
+     b) "Add several": paste or type multiple station names, one per line, into the textarea and click "+ Add All Stations" to create them all at once. There's also a "Generate Numbered Stations" option below it — enter how many stations you need and an optional name prefix (defaults to "Station"), and it auto-creates that many stations named like "Station 01", "Station 02", etc. (numbers zero-padded, capped at 500 per batch). Duplicate station names within the same area are skipped and reported.
+   - Stations are listed grouped by area below the form, however many there are. Click a station to expand it and use the +/- buttons or type directly into the number field to record each candidate's votes AT THAT STATION.
+   - All station totals for a candidate automatically sum up into that candidate's overall vote count — there is nothing to manually total.
+   - Stations and whole areas can be removed with the ✕ options next to them.
+
+3. RESULTS — OVERALL tab (right panel):
+   - Shows every candidate ranked by total votes across ALL stations and areas combined, with an animated bar, vote count, and percentage.
+   - The current leader gets a "Leading" badge; a candidate gets a "✓ Winner" badge once they pass 50% of all votes cast.
+   - Top of the page shows two live counters: "Areas Reporting" and "Total Votes Counted".
+
+4. RESULTS — BY AREA tab:
+   - Shows one card per electoral area with that area's own total votes, its number of polling stations, its leading candidate, and a mini vote-share bar per candidate — all scoped to just that area.
+   - Use the sort buttons above the list to reorder areas: "Votes ↓", "Votes ↑", "Name A–Z", or "Most Stations".
+
+5. RESULTS — BAR CHART / DONUT CHART tabs:
+   - Visualize the OVERALL (grand total) vote counts as a horizontal bar chart or a donut chart, each candidate shown in their chosen color.
+
+6. OTHER CONTROLS:
+   - "Reset all votes" (left panel) zeroes every vote at every station without deleting candidates, areas, or stations.
+   - The election title at the top is editable — click it and type a new name for the contest.
+   - Everything runs client-side in the browser tab; no data is uploaded or saved anywhere, so refreshing the page clears it.
+
+If asked something unrelated to this tool, gently redirect to what you can help with (using the Results Desk). Keep answers short and scannable.`;
+
+  function buildSystemPrompt(){
+    let snap;
+    try{
+      snap = (typeof window.getAppSnapshot === 'function') ? window.getAppSnapshot() : null;
+    } catch(e){ snap = null; }
+
+    if (!snap){
+      return STATIC_INSTRUCTIONS + `\n\nCURRENT LIVE STATE:\nNot available right now — answer only from HOW THE TOOL WORKS above, and mention you can't see live data at the moment if asked about specific candidates or votes.`;
+    }
+
+    const liveState = `
+Election title: ${snap.title}
+Candidates (${snap.candidateCount}):
+${snap.candidateLines}
+
+Electoral areas (${snap.areaCount}), polling stations total (${snap.stationCount}):
+${snap.areaLines}
+
+Total votes counted across everything: ${snap.totalVotes}
+Tab the user is currently viewing: ${snap.currentView}`;
+
+    return STATIC_INSTRUCTIONS + `\n\nCURRENT LIVE STATE:` + liveState;
+  }
+
+  let chatHistory = [];
+  let chatOpened = false;
+  let sending = false;
+
+  const fab = document.getElementById('chatFab');
+  const panel = document.getElementById('chatPanel');
+  const body = document.getElementById('chatBody');
+  const input = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSendBtn');
+  const closeBtn = document.getElementById('chatCloseBtn');
+  const suggestions = document.getElementById('chatSuggestions');
+
+  function addMessage(role, text){
+    const el = document.createElement('div');
+    el.className = 'chat-msg ' + (role === 'user' ? 'user' : 'bot');
+    el.textContent = text;
+    body.appendChild(el);
+    body.scrollTop = body.scrollHeight;
+    return el;
+  }
+
+  function addTyping(){
+    const el = document.createElement('div');
+    el.className = 'chat-msg bot typing';
+    el.innerHTML = '<span></span><span></span><span></span>';
+    body.appendChild(el);
+    body.scrollTop = body.scrollHeight;
+    return el;
+  }
+
+  function openPanel(){
+    panel.classList.add('open');
+    fab.classList.remove('has-unread');
+    if (!chatOpened){
+      chatOpened = true;
+      addMessage('bot', "Hi! I'm the Results Desk assistant. Ask me how to add candidates, log votes by polling station, read the area breakdown, or anything else about this tool.");
+    }
+    input.focus();
+  }
+  function closePanel(){ panel.classList.remove('open'); }
+
+  fab.addEventListener('click', () => {
+    if (panel.classList.contains('open')) closePanel();
+    else openPanel();
+  });
+  closeBtn.addEventListener('click', closePanel);
+
+  suggestions.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      input.value = btn.dataset.q;
+      sendMessage();
+    });
+  });
+
+  async function sendMessage(){
+    const text = input.value.trim();
+    if (!text || sending) return;
+    sending = true;
+    sendBtn.disabled = true;
+    input.value = '';
+    addMessage('user', text);
+    chatHistory.push({ role:'user', content: text });
+    const typingEl = addTyping();
+
+    try{
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify({
+          model:"claude-sonnet-4-6",
+          max_tokens:1000,
+          temperature:0.2,
+          system: buildSystemPrompt(),
+          messages: chatHistory
+        })
+      });
+
+      let data;
+      try{ data = await response.json(); }
+      catch(parseErr){ throw new Error('Received an unreadable response from the assistant.'); }
+
+      typingEl.remove();
+
+      if (!response.ok || data.type === 'error'){
+        const apiMsg = (data && data.error && data.error.message) ? data.error.message : `Request failed (status ${response.status}).`;
+        console.error('Chat API error:', apiMsg);
+        addMessage('bot', "I hit a snag answering that — please try asking again in a moment.");
+        chatHistory.pop(); // don't keep the failed turn's user message counted as answered
+        return;
+      }
+
+      let replyText = "Sorry, I couldn't quite process that — could you try rephrasing your question?";
+      if (data && Array.isArray(data.content)){
+        replyText = data.content.map(block => block.type === 'text' ? block.text : '').join('\n').trim() || replyText;
+      }
+      addMessage('bot', replyText);
+      chatHistory.push({ role:'assistant', content: replyText });
+      if (!panel.classList.contains('open')) fab.classList.add('has-unread');
+    } catch(err){
+      typingEl.remove();
+      addMessage('bot', "I'm having trouble connecting right now. Please check your connection and try again.");
+      console.error('Chat error:', err);
+    } finally{
+      sending = false;
+      sendBtn.disabled = false;
+      input.focus();
+    }
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMessage(); });
+})();
 </script>
 
+<script>
+(function(){
+  const PALETTE = ['#c1443c','#3b6fa0','#3c8c6e','#b5673a','#7a5cc0','#c79a3a','#4a9db8','#b14c7c'];
+  let candidates = [];   // {id, name, party, color, photo}
+  let areas = [];        // {id, name, stations:[{id, name, votes:{candidateId:count}}]}
+  let nextCandidateId = 1;
+  let nextAreaId = 1;
+  let nextStationId = 1;
+  let selectedColor = PALETTE[0];
+  let uploadedPhoto = null;
+  let currentView = 'board';
+  let chartInstance = null;
+  let chartMode = 'bar';
+  let areaSort = 'votes-desc';
+  let openStations = new Set();
 
+  // ---------------- swatches ----------------
+  const swatchesEl = document.getElementById('swatches');
+  PALETTE.forEach((c, i) => {
+    const s = document.createElement('div');
+    s.className = 'swatch' + (i === 0 ? ' selected' : '');
+    s.style.background = c;
+    s.dataset.color = c;
+    s.addEventListener('click', () => {
+      selectedColor = c;
+      [...swatchesEl.children].forEach(el => el.classList.remove('selected'));
+      s.classList.add('selected');
+    });
+    swatchesEl.appendChild(s);
+  });
 
+  // ---------------- photo upload ----------------
+  const avatarUpload = document.getElementById('avatarUpload');
+  const photoInput = document.getElementById('photoInput');
+  avatarUpload.addEventListener('click', () => photoInput.click());
+  photoInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      uploadedPhoto = ev.target.result;
+      avatarUpload.style.backgroundImage = `url(${uploadedPhoto})`;
+      avatarUpload.classList.add('has-img');
+    };
+    reader.readAsDataURL(file);
+  });
 
+  function resetCandidateForm(){
+    document.getElementById('nameInput').value = '';
+    document.getElementById('partyInput').value = '';
+    uploadedPhoto = null;
+    avatarUpload.style.backgroundImage = '';
+    avatarUpload.classList.remove('has-img');
+    selectedColor = PALETTE[candidates.length % PALETTE.length];
+    [...swatchesEl.children].forEach(el => el.classList.toggle('selected', el.dataset.color === selectedColor));
+  }
 
+  document.getElementById('addBtn').addEventListener('click', () => {
+    const nameEl = document.getElementById('nameInput');
+    const name = nameEl.value.trim();
+    if (!name){
+      nameEl.focus();
+      nameEl.style.borderColor = '#c1443c';
+      setTimeout(() => nameEl.style.borderColor = '', 900);
+      return;
+    }
+    const party = document.getElementById('partyInput').value.trim();
+    candidates.push({ id: nextCandidateId++, name, party, color: selectedColor, photo: uploadedPhoto });
+    resetCandidateForm();
+    renderAll();
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    areas.forEach(a => a.stations.forEach(s => {
+      Object.keys(s.votes).forEach(k => s.votes[k] = 0);
+    }));
+    renderAll();
+  });
+
+  // ---------------- electoral areas / polling stations ----------------
+  const areaSelect = document.getElementById('areaSelect');
+  const newAreaField = document.getElementById('newAreaField');
+
+  function refreshAreaSelect(){
+    const prevVal = areaSelect.value;
+    areaSelect.innerHTML = '';
+    areas.forEach(a => {
+      const opt = document.createElement('option');
+      opt.value = a.id;
+      opt.textContent = a.name;
+      areaSelect.appendChild(opt);
+    });
+    const newOpt = document.createElement('option');
+    newOpt.value = '__new__';
+    newOpt.textContent = '+ New electoral area…';
+    areaSelect.appendChild(newOpt);
+
+    if (areas.length === 0){
+      areaSelect.value = '__new__';
+    } else if ([...areaSelect.options].some(o => o.value === prevVal)) {
+      areaSelect.value = prevVal;
+    } else {
+      areaSelect.value = areas[areas.length - 1].id;
+    }
+    toggleNewAreaField();
+  }
+  function toggleNewAreaField(){
+    newAreaField.style.display = areaSelect.value === '__new__' ? '' : 'none';
+  }
+  areaSelect.addEventListener('change', toggleNewAreaField);
+
+  function votesForCandidates(){
+    const obj = {};
+    candidates.forEach(c => obj[c.id] = 0);
+    return obj;
+  }
+
+  function flashError(el){
+    el.style.borderColor = '#c1443c';
+    setTimeout(() => el.style.borderColor = '', 900);
+  }
+
+  function resolveTargetArea(){
+    if (areaSelect.value === '__new__'){
+      const newAreaInput = document.getElementById('newAreaInput');
+      const newName = newAreaInput.value.trim();
+      if (!newName){
+        newAreaInput.focus();
+        flashError(newAreaInput);
+        return null;
+      }
+      const area = { id: nextAreaId++, name: newName, stations: [] };
+      areas.push(area);
+      newAreaInput.value = '';
+      return area;
+    }
+    return areas.find(a => String(a.id) === String(areaSelect.value));
+  }
+
+  function addStationsToArea(area, names, autoOpen){
+    const existingNames = new Set(area.stations.map(s => s.name.toLowerCase()));
+    let added = 0, skipped = 0;
+    names.forEach(name => {
+      if (existingNames.has(name.toLowerCase())){ skipped++; return; }
+      existingNames.add(name.toLowerCase());
+      const station = { id: nextStationId++, name, votes: votesForCandidates() };
+      area.stations.push(station);
+      if (autoOpen) openStations.add(station.id);
+      added++;
+    });
+    return { added, skipped };
+  }
+
+  function finishAddingStations(area){
+    refreshAreaSelect();
+    areaSelect.value = area.id;
+    toggleNewAreaField();
+    renderAll();
+  }
+
+  // ---- mode toggle: one at a time vs. add several ----
+  const singleMode = document.getElementById('singleStationMode');
+  const bulkMode = document.getElementById('bulkStationMode');
+  document.querySelectorAll('#stationModeToggle button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#stationModeToggle button').forEach(b => b.classList.toggle('active', b === btn));
+      const mode = btn.dataset.mode;
+      singleMode.style.display = mode === 'single' ? '' : 'none';
+      bulkMode.style.display = mode === 'bulk' ? '' : 'none';
+    });
+  });
+
+  // ---- add one station ----
+  document.getElementById('addStationBtn').addEventListener('click', () => {
+    const stationInput = document.getElementById('stationInput');
+    const stationName = stationInput.value.trim();
+    if (!stationName){ stationInput.focus(); flashError(stationInput); return; }
+    const area = resolveTargetArea();
+    if (!area) return;
+    addStationsToArea(area, [stationName], true);
+    stationInput.value = '';
+    finishAddingStations(area);
+  });
+
+  // ---- add several stations at once (one name per line) ----
+  document.getElementById('addBulkStationBtn').addEventListener('click', () => {
+    const ta = document.getElementById('bulkStationInput');
+    const names = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
+    if (names.length === 0){ ta.focus(); flashError(ta); return; }
+    const area = resolveTargetArea();
+    if (!area) return;
+    const { added, skipped } = addStationsToArea(area, names, false);
+    ta.value = '';
+    const statusEl = document.getElementById('bulkStatus');
+    statusEl.textContent = skipped > 0
+      ? `Added ${added} station${added===1?'':'s'} · skipped ${skipped} duplicate name${skipped===1?'':'s'}.`
+      : `Added ${added} station${added===1?'':'s'}.`;
+    statusEl.style.display = '';
+    setTimeout(() => { statusEl.style.display = 'none'; }, 3500);
+    finishAddingStations(area);
+  });
+
+  // ---- quick-generate a numbered batch of stations ----
+  document.getElementById('quickGenerateBtn').addEventListener('click', () => {
+    const countInput = document.getElementById('quickCount');
+    const prefixInput = document.getElementById('quickPrefix');
+    let count = parseInt(countInput.value, 10);
+    if (!count || count < 1){ countInput.focus(); flashError(countInput); return; }
+    count = Math.min(count, 500);
+    const prefix = prefixInput.value.trim() || 'Station';
+    const pad = String(count).length;
+    const names = [];
+    for (let i = 1; i <= count; i++){ names.push(`${prefix} ${String(i).padStart(pad, '0')}`); }
+    const area = resolveTargetArea();
+    if (!area) return;
+    const { added, skipped } = addStationsToArea(area, names, false);
+    countInput.value = '';
+    const statusEl = document.getElementById('bulkStatus');
+    statusEl.textContent = skipped > 0
+      ? `Generated ${added} station${added===1?'':'s'} · skipped ${skipped} duplicate name${skipped===1?'':'s'}.`
+      : `Generated ${added} station${added===1?'':'s'}.`;
+    statusEl.style.display = '';
+    setTimeout(() => { statusEl.style.display = 'none'; }, 3500);
+    finishAddingStations(area);
+  });
+
+  function updateStationVote(areaId, stationId, candidateId, delta, setValue){
+    const area = areas.find(a => a.id === areaId);
+    if (!area) return;
+    const station = area.stations.find(s => s.id === stationId);
+    if (!station) return;
+    if (station.votes[candidateId] === undefined) station.votes[candidateId] = 0;
+    if (setValue !== undefined){
+      station.votes[candidateId] = Math.max(0, parseInt(setValue) || 0);
+    } else {
+      station.votes[candidateId] = Math.max(0, station.votes[candidateId] + delta);
+    }
+    renderAll();
+  }
+
+  function removeStation(areaId, stationId){
+    const area = areas.find(a => a.id === areaId);
+    if (!area) return;
+    area.stations = area.stations.filter(s => s.id !== stationId);
+    renderAll();
+  }
+
+  function removeArea(areaId){
+    areas = areas.filter(a => a.id !== areaId);
+    refreshAreaSelect();
+    renderAll();
+  }
+
+  function stationTotal(station){
+    return Object.values(station.votes).reduce((a,b) => a + b, 0);
+  }
+  function areaTotal(area){
+    return area.stations.reduce((s, st) => s + stationTotal(st), 0);
+  }
+  function areaVotesByCandidate(area){
+    const totals = {};
+    candidates.forEach(c => totals[c.id] = 0);
+    area.stations.forEach(st => {
+      candidates.forEach(c => { totals[c.id] += (st.votes[c.id] || 0); });
+    });
+    return totals;
+  }
+  function grandTotalByCandidate(){
+    const totals = {};
+    candidates.forEach(c => totals[c.id] = 0);
+    areas.forEach(a => {
+      a.stations.forEach(st => {
+        candidates.forEach(c => { totals[c.id] += (st.votes[c.id] || 0); });
+      });
+    });
+    return totals;
+  }
+
+  function renderStationList(){
+    const list = document.getElementById('stationList');
+    document.getElementById('stationCount').textContent = areas.reduce((s,a) => s + a.stations.length, 0);
+    if (areas.length === 0 || areas.every(a => a.stations.length === 0)){
+      list.innerHTML = '<p class="empty-mini">No polling stations yet.</p>';
+      return;
+    }
+    list.innerHTML = '';
+    areas.forEach(area => {
+      if (area.stations.length === 0) return;
+      const group = document.createElement('div');
+      group.className = 'station-group';
+      const title = document.createElement('div');
+      title.className = 'station-group-title';
+      title.innerHTML = `${escapeHtml(area.name)} <span style="margin-left:auto; font-family:'IBM Plex Mono',monospace; font-weight:400; font-size:10.5px; color:var(--muted); cursor:pointer;" data-remove-area="${area.id}">remove area ✕</span>`;
+      group.appendChild(title);
+
+      area.stations.forEach(station => {
+        const isOpen = openStations.has(station.id);
+        const card = document.createElement('div');
+        card.className = 'station-card' + (isOpen ? ' open' : '');
+
+        const head = document.createElement('div');
+        head.className = 'station-card-head';
+        head.innerHTML = `
+          <span class="station-name">${escapeHtml(station.name)}</span>
+          <span class="station-meta">
+            <span>${stationTotal(station).toLocaleString()} votes</span>
+            <span class="chevron">▶</span>
+          </span>
+        `;
+        head.addEventListener('click', () => {
+          if (openStations.has(station.id)) openStations.delete(station.id);
+          else openStations.add(station.id);
+          renderStationList();
+        });
+
+        const body = document.createElement('div');
+        body.className = 'station-body';
+        if (candidates.length === 0){
+          body.innerHTML = '<p class="empty-mini">Add candidates first to enter votes.</p>';
+        } else {
+          candidates.forEach(c => {
+            const v = station.votes[c.id] || 0;
+            const row = document.createElement('div');
+            row.className = 'station-vote-row';
+            row.innerHTML = `
+              <span class="cname"><span class="dot" style="background:${c.color}"></span>${escapeHtml(c.name)}</span>
+              <span class="mini-controls">
+                <button data-act="minus">−</button>
+                <input type="number" min="0" value="${v}">
+                <button data-act="plus">+</button>
+              </span>
+            `;
+            row.querySelector('[data-act="minus"]').addEventListener('click', (e) => {
+              e.stopPropagation();
+              updateStationVote(area.id, station.id, c.id, -1);
+            });
+            row.querySelector('[data-act="plus"]').addEventListener('click', (e) => {
+              e.stopPropagation();
+              updateStationVote(area.id, station.id, c.id, 1);
+            });
+            row.querySelector('input').addEventListener('click', (e) => e.stopPropagation());
+            row.querySelector('input').addEventListener('input', (e) => {
+              updateStationVote(area.id, station.id, c.id, 0, e.target.value);
+            });
+            body.appendChild(row);
+          });
+        }
+        const removeRow = document.createElement('div');
+        removeRow.style.textAlign = 'right';
+        removeRow.style.marginTop = '6px';
+        removeRow.innerHTML = `<button class="station-remove" data-remove-station>Remove station ✕</button>`;
+        removeRow.querySelector('[data-remove-station]').addEventListener('click', (e) => {
+          e.stopPropagation();
+          removeStation(area.id, station.id);
+        });
+        body.appendChild(removeRow);
+
+        card.appendChild(head);
+        card.appendChild(body);
+        group.appendChild(card);
+      });
+      list.appendChild(group);
+    });
+
+    list.querySelectorAll('[data-remove-area]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        removeArea(parseInt(el.dataset.removeArea));
+      });
+    });
+  }
+
+  // ---------------- view tabs ----------------
+  const tabs = {
+    board: document.getElementById('tabBoard'),
+    areas: document.getElementById('tabAreas'),
+    bar: document.getElementById('tabBar'),
+    donut: document.getElementById('tabDonut')
+  };
+  function setView(view){
+    currentView = view;
+    Object.entries(tabs).forEach(([k,el]) => el.classList.toggle('active', k === view));
+    document.getElementById('boardView').style.display = view === 'board' ? '' : 'none';
+    document.getElementById('areasView').style.display = view === 'areas' ? '' : 'none';
+    document.getElementById('chartView').style.display = (view === 'bar' || view === 'donut') ? '' : 'none';
+    if (view === 'bar' || view === 'donut'){ chartMode = view; renderChart(); }
+    if (view === 'areas'){ renderAreasView(); }
+  }
+  tabs.board.addEventListener('click', () => setView('board'));
+  tabs.areas.addEventListener('click', () => setView('areas'));
+  tabs.bar.addEventListener('click', () => setView('bar'));
+  tabs.donut.addEventListener('click', () => setView('donut'));
+
+  document.querySelectorAll('.sort-bar button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      areaSort = btn.dataset.sort;
+      document.querySelectorAll('.sort-bar button').forEach(b => b.classList.toggle('active', b === btn));
+      renderAreasView();
+    });
+  });
+
+  function initials(name){
+    return name.split(' ').filter(Boolean).slice(0,2).map(w => w[0].toUpperCase()).join('');
+  }
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  // ---------------- overall board ----------------
+  function renderBoard(){
+    const totals = grandTotalByCandidate();
+    const total = Object.values(totals).reduce((a,b) => a+b, 0);
+    document.getElementById('totalVotes').textContent = total.toLocaleString();
+    document.getElementById('candidateCount').textContent = candidates.length;
+    document.getElementById('areaCount').textContent = areas.length;
+
+    const empty = document.getElementById('emptyState');
+    const list = document.getElementById('raceList');
+    empty.style.display = candidates.length === 0 ? '' : 'none';
+
+    const sorted = [...candidates].sort((a,b) => (totals[b.id]||0) - (totals[a.id]||0));
+    const leaderVotes = sorted.length ? (totals[sorted[0].id]||0) : 0;
+
+    list.innerHTML = '';
+    sorted.forEach(c => {
+      const votes = totals[c.id] || 0;
+      const pct = total > 0 ? (votes / total * 100) : 0;
+      const isLeader = votes > 0 && votes === leaderVotes && candidates.length > 1;
+      const isCalled = total > 0 && (votes / total) > 0.5;
+
+      const row = document.createElement('div');
+      row.className = 'race-row';
+      const avatarStyle = c.photo ? `background-image:url(${c.photo});` : `background:${c.color}33; color:${c.color};`;
+
+      row.innerHTML = `
+        <div class="race-avatar" style="${avatarStyle}">${c.photo ? '' : initials(c.name)}</div>
+        <div class="race-main">
+          <div class="race-top">
+            <span class="race-name">
+              ${escapeHtml(c.name)}
+              ${isCalled ? `<span class="badge winner">✓ Winner</span>` : (isLeader ? `<span class="badge">Leading</span>` : '')}
+            </span>
+            <span class="race-stats"><b>${votes.toLocaleString()}</b> votes · ${pct.toFixed(1)}%</span>
+          </div>
+          <div class="race-bar-track"><div class="race-bar-fill" style="width:${pct}%; background:${c.color};"></div></div>
+        </div>
+        <button class="remove-btn" data-remove-candidate="${c.id}" title="Remove candidate">✕</button>
+      `;
+      row.querySelector('[data-remove-candidate]').addEventListener('click', () => {
+        candidates = candidates.filter(x => x.id !== c.id);
+        areas.forEach(a => a.stations.forEach(st => { delete st.votes[c.id]; }));
+        renderAll();
+      });
+      list.appendChild(row);
+    });
+  }
+
+  // ---------------- by-area view ----------------
+  function renderAreasView(){
+    const areaList = document.getElementById('areaList');
+    const areaEmpty = document.getElementById('areaEmptyState');
+    areaEmpty.style.display = areas.length === 0 ? '' : 'none';
+    areaList.innerHTML = '';
+    if (areas.length === 0 || candidates.length === 0) return;
+
+    let rows = areas.map(area => {
+      const totals = areaVotesByCandidate(area);
+      const total = areaTotal(area);
+      const sortedC = [...candidates].sort((a,b) => (totals[b.id]||0) - (totals[a.id]||0));
+      const leader = total > 0 ? sortedC[0] : null;
+      return { area, totals, total, leader, stationCount: area.stations.length };
+    });
+
+    switch(areaSort){
+      case 'votes-desc': rows.sort((a,b) => b.total - a.total); break;
+      case 'votes-asc': rows.sort((a,b) => a.total - b.total); break;
+      case 'name-asc': rows.sort((a,b) => a.area.name.localeCompare(b.area.name)); break;
+      case 'stations-desc': rows.sort((a,b) => b.stationCount - a.stationCount); break;
+    }
+
+    rows.forEach(r => {
+      const card = document.createElement('div');
+      card.className = 'area-card';
+      let leaderHtml = '<div class="area-leader" style="color:var(--muted);">No votes recorded yet</div>';
+      if (r.leader && r.total > 0){
+        const pct = (r.totals[r.leader.id] / r.total * 100).toFixed(1);
+        leaderHtml = `<div class="area-leader"><span class="dot" style="background:${r.leader.color}"></span> <b>${escapeHtml(r.leader.name)}</b> leads with ${pct}%</div>`;
+      }
+      let barsHtml = '';
+      [...candidates].sort((a,b) => (r.totals[b.id]||0) - (r.totals[a.id]||0)).forEach(c => {
+        const v = r.totals[c.id] || 0;
+        const pct = r.total > 0 ? (v / r.total * 100) : 0;
+        barsHtml += `
+          <div class="mini-bar-row">
+            <div class="mini-bar-top"><span>${escapeHtml(c.name)}</span><b>${v.toLocaleString()} (${pct.toFixed(1)}%)</b></div>
+            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:${pct}%; background:${c.color};"></div></div>
+          </div>
+        `;
+      });
+      card.innerHTML = `
+        <div class="area-card-top">
+          <div>
+            <div class="area-name">${escapeHtml(r.area.name)}</div>
+            <div class="area-sub">${r.stationCount} polling station${r.stationCount === 1 ? '' : 's'}</div>
+          </div>
+          <div class="area-total"><b>${r.total.toLocaleString()}</b><div class="lbl">Total Votes</div></div>
+        </div>
+        ${leaderHtml}
+        ${barsHtml}
+      `;
+      areaList.appendChild(card);
+    });
+  }
+
+  // ---------------- chart ----------------
+  function renderChart(){
+    const canvas = document.getElementById('resultsChart');
+    const ctx = canvas.getContext('2d');
+    const totals = grandTotalByCandidate();
+    const sorted = [...candidates].sort((a,b) => (totals[b.id]||0) - (totals[a.id]||0));
+    const labels = sorted.map(c => c.name);
+    const data = sorted.map(c => totals[c.id] || 0);
+    const colors = sorted.map(c => c.color);
+
+    if (chartInstance) chartInstance.destroy();
+
+    const commonOptions = {
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{
+          display: chartMode === 'donut',
+          position:'right',
+          labels:{ color:'#f2f0e9', font:{ family:'Inter', size:12 } }
+        },
+        tooltip:{
+          callbacks:{ label: (item) => ` ${item.label}: ${item.formattedValue} votes` }
+        }
+      }
+    };
+
+    if (chartMode === 'bar'){
+      chartInstance = new Chart(ctx, {
+        type:'bar',
+        data:{ labels, datasets:[{ label:'Votes', data, backgroundColor: colors, borderRadius:6, barThickness: 28 }] },
+        options:{
+          ...commonOptions,
+          indexAxis:'y',
+          scales:{
+            x:{ beginAtZero:true, ticks:{ color:'#8a93a6', font:{family:'IBM Plex Mono', size:11} }, grid:{ color:'rgba(242,240,233,0.06)' } },
+            y:{ ticks:{ color:'#f2f0e9', font:{family:'Inter', size:12} }, grid:{ display:false } }
+          }
+        }
+      });
+    } else {
+      chartInstance = new Chart(ctx, {
+        type:'doughnut',
+        data:{ labels, datasets:[{ data, backgroundColor: colors, borderColor: '#0d1526', borderWidth:3 }] },
+        options:{ ...commonOptions, cutout:'62%' }
+      });
+    }
+  }
+
+  function renderAll(){
+    renderBoard();
+    renderStationList();
+    if (currentView === 'areas') renderAreasView();
+    if (currentView === 'bar' || currentView === 'donut') renderChart();
+  }
+
+  // Expose a live, factual snapshot of current app state so the embedded
+  // assistant can ground its answers in what's actually on the page right
+  // now, instead of guessing or going stale.
+  window.getAppSnapshot = function(){
+    const totals = grandTotalByCandidate();
+    const totalVotes = Object.values(totals).reduce((a,b) => a+b, 0);
+
+    const candidateLines = candidates.length
+      ? [...candidates]
+          .sort((a,b) => (totals[b.id]||0) - (totals[a.id]||0))
+          .map(c => {
+            const v = totals[c.id] || 0;
+            const pct = totalVotes > 0 ? (v/totalVotes*100).toFixed(1) : '0.0';
+            return `- ${c.name}${c.party ? ' ('+c.party+')' : ''} — color ${c.color}, ${v} votes (${pct}%)${c.photo ? ', has a photo' : ', no photo uploaded'}`;
+          }).join('\n')
+      : 'No candidates added yet.';
+
+    const areaLines = areas.length
+      ? areas.map(a => {
+          const t = areaTotal(a);
+          const stationNames = a.stations.length
+            ? a.stations.map(s => `${s.name} (${stationTotal(s)} votes)`).join(', ')
+            : 'no stations yet';
+          return `- ${a.name}: ${a.stations.length} station(s) — ${t} total votes. Stations: ${stationNames}`;
+        }).join('\n')
+      : 'No electoral areas added yet.';
+
+    return {
+      title: document.getElementById('electionTitle').value || 'Untitled election',
+      candidateCount: candidates.length,
+      areaCount: areas.length,
+      stationCount: areas.reduce((s,a) => s + a.stations.length, 0),
+      totalVotes,
+      candidateLines,
+      areaLines,
+      currentView
+    };
+  };
+
+  // init
+  resetCandidateForm();
+  refreshAreaSelect();
+  renderAll();
+})();
+</script>
 </body>
-</html>   
+</html>
